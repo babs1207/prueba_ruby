@@ -7,7 +7,14 @@ end
 
 read_alum('alumnos.csv')
 array_de_alumnos = read_alum('alumnos.csv')
-
+def alumnos_aprobacion(notas = 5.0, array_de_alumnos)
+  array_de_alumnos.each do |alumnos|
+    nombre_alumnos = alumnos[0]
+    notas = alumnos.map { |num| num.to_i }
+    promedio_notas = notas.sum / notas.count.to_f
+    puts "#{nombre_alumnos}" if promedio_notas >= 5.0
+  end
+end
 def menu
   puts 'MENU'
   puts '1) Ver el nombre del alumno y su promedio'
@@ -36,9 +43,11 @@ while opcion != 4
       inasistencias = 0
     end
   elsif opcion == 3
+    alumnos_aprobacion(array_de_alumnos)
   else
     puts 'Opcion Invalida'
   end
   menu
   opcion = gets.chomp.to_i
 end
+puts 'Adios!!'
